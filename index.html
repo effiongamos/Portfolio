@@ -38,6 +38,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#about" aria-label="Go to About me">
+                        <i class="fa-solid fa-user"></i> <span class="link-text">About Me</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#projects" aria-label="Go to Projects">
                         <i class="fa-solid fa-laptop-code"></i> <span class="link-text">Projects</span>
                     </a>
@@ -56,7 +61,54 @@
         </nav>
     </header>
     <main>
-        
+        <!-- Hero Section -->
+        <section id="home" class="hero" aria-labelledby="hero-heading">
+            <div class="hero-text">
+                <h1 id="hero-heading">Benjamin Amos Effiong</h1>
+                <h2>Web Developer & Designer</h2>
+                <p> I build accessible, responsive, and user-friendly websites that bring ideas to life.</p>
+                <!-- CTA with icon -->
+                <a href="#projects" class="btn cta" aria-label="Learn more about Benjamin">
+                    <i class="fa-solid fa-arrow-right"></i> Learn More About Me
+                </a>
+            </div>
+            <div class="hero-image">
+                <!-- Decorative layered boxes -->
+                <div class="image-wrapper">
+                <div class="decor-box box1"></div>
+                <div class="decor-box box2"></div>
+                <img src="images/photo.jpg" alt="Portrait of Benjamin Effiong" />
+            </div>
+            </div>
+        </section>
+        <!-- Featured Project Preview -->
+        <section id="projects" class="projects" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Featured Project</h2>
+            <article class="project-card">
+                <img src="images/project1.jpg" alt="Screenshot of featured project" />
+                <div class="project-info">
+                    <h3>Project Title</h3>
+                    <p> Short description of the project. What problem it solves, what technologies you used.</p>
+                    <a href="projects.html" class="btn">See More Projects</a>
+                </div>
+            </article>
+        </section>
+        <!-- Contact -->
+        <section id="contact" class="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Let’s Work Together</h2>
+            <p>Reach me via email or connect on social media:</p>
+            <nav aria-label="Contact Links">
+                <a href="mailto:youremail@example.com" aria-label="Email Benjamin">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </nav>
+        </section>
     </main>
 </body>
 </html>
