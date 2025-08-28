@@ -1,0 +1,118 @@
+:root {
+  --brand: #3B82F6;   /* Blue */
+  --accent: #F59E0B;  /* Amber */
+  --bg-light: #F9FAFB;
+  --bg-dark: #111827;
+  --text-primary: #1F2937;
+  --text-light: #F3F4F6;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+/* Styling the header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--bg-light);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+/* Navbar container */
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0.9rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Logo centered */
+.logo img {
+  height: 50px;
+}
+/* Toggle button (mobile only) */
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  display: none;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+/* Nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+/* Icon above text */
+.nav-links i {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+/* Hover & focus states */
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: var(--brand);
+}
+/* Active indicator */
+.nav-links li a.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--brand);
+  border-radius: 2px;
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-light);
+    flex-direction: column;
+    width: 80px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+  }
+
+  .nav-links li {
+    padding: 1rem;
+    text-align: center;
+  }
+}
