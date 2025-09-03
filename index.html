@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!--external link -->
     <link rel="icon" href="images/" type="image/jpeg">
-    <link rel="stylesheet" href="styles/index.css">
-    <script defer src="scripts/index.js"></script>
+    <link rel="stylesheet" href="styles/portfolio.css">
+    <!-- <link rel="stylesheet" href="styles/index.css"> -->
+    <script defer src="scripts/portfolio.js"></script>
+</head>
 <body>
     <header>
         <!-- Navigation -->
@@ -26,9 +28,20 @@
             <a href="#home" class="logo">
                 <img src="images/" alt="Benjamin Effiong Logo" />
             </a>
+            <!-- Theme toggle -->
+            <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                <span class="theme-text">Dark Mode</span>
+            </button>
+            <!-- Text customization toggle -->
+            <button class="text-toggle" aria-label="Customize text settings" aria-expanded="false" aria-controls="text-controls">
+                <i class="fa-solid fa-font" aria-hidden="true"></i>
+                <span class="toggle-text">Customize Text</span>
+            </button>
             <!-- Hamburger button (mobile only) -->
             <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars open-icon"></i>
+                <i class="fa-solid fa-xmark close-icon"></i>
             </button>
             <!-- Navigation Links -->
             <ul id="nav-links" class="nav-links">
@@ -60,6 +73,22 @@
             </ul>
         </nav>
     </header>
+    <!-- Text customization controls -->
+    <aside id="text-controls" class="text-controls" hidden>
+        <label>Font Size: <input type="range" id="font-size" min="14" max="24" value="16"></label>
+        <label>Line Spacing: <input type="range" id="line-spacing" min="1" max="2" step="0.1" value="1.5"></label>
+        <label>Font Family:
+            <select id="font-family">
+                <option value="system-ui">Default</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+                <option value="'OpenDyslexic', sans-serif">OpenDyslexic</option>
+            </select>
+        </label>
+        <label>Text Color: <input type="color" id="text-color" value="#111827"></label>
+        <label>Background Color: <input type="color" id="bg-color" value="#FFFFFF"></label>
+        <button id="reset-settings">Reset</button>
+    </aside>
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero" aria-labelledby="hero-heading">
@@ -81,34 +110,45 @@
             </div>
             </div>
         </section>
-        <!-- Featured Project Preview -->
-        <section id="projects" class="projects" aria-labelledby="projects-heading">
+        <!-- ==== Projects ==== -->
+        <section id="projects" class="projects">
             <h2 id="projects-heading">Featured Project</h2>
-            <article class="project-card">
-                <img src="images/project1.jpg" alt="Screenshot of featured project" />
-                <div class="project-info">
-                    <h3>Project Title</h3>
-                    <p> Short description of the project. What problem it solves, what technologies you used.</p>
-                    <a href="projects.html" class="btn">See More Projects</a>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250" alt="Project 1">
+                <div class="content">
+                    <h3>Fintech Dashboard</h3>
+                    <p>Modern dashboard with clean visuals and accessible data.</p>
                 </div>
-            </article>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250" alt="Project 2">
+                <div class="content">
+                    <h3>Marketing Landing</h3>
+                    <p>Landing page designed to maximize conversions with strong CTAs.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250" alt="Project 3">
+                <div class="content">
+                    <h3>E-commerce UI</h3>
+                    <p>High-contrast product pages that make items pop.</p>
+                </div>
+            </div>
         </section>
-        <!-- Contact -->
-        <section id="contact" class="contact" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Let’s Work Together</h2>
+        <!-- ==== Contact ==== -->
+        <section id="contact" class="contact">
+            <h2>Let’s Work Together</h2>
             <p>Reach me via email or connect on social media:</p>
-            <nav aria-label="Contact Links">
-                <a href="mailto:youremail@example.com" aria-label="Email Benjamin">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-                <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-            </nav>
+            <div>
+                <a href="mailto:youremail@example.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/yourgithub" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourlinkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
         </section>
     </main>
+    <!-- ==== Footer ==== -->
+    <footer>
+        <p>© 2025 Benjamin Effiong | Built with passion</p>
+    </footer>
 </body>
 </html>

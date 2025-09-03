@@ -7,7 +7,9 @@
   --text-light: #F3F4F6;
 }
 
-/* Reset */
+/* =======================
+   RESET
+======================= */
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +21,10 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
 }
-/* Styling the header */
+
+/* =======================
+   HEADER
+======================= */
 header {
   position: fixed;
   top: 0;
@@ -28,6 +33,7 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 1000;
 }
+
 /* Navbar container */
 .navbar {
   max-width: 1200px;
@@ -37,10 +43,12 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-/* Logo centered */
+
+/* Logo */
 .logo img {
   height: 50px;
 }
+
 /* Toggle button (mobile only) */
 .menu-toggle {
   background: none;
@@ -50,6 +58,7 @@ header {
   cursor: pointer;
   color: var(--text-primary);
 }
+
 /* Nav links */
 .nav-links {
   list-style: none;
@@ -66,16 +75,19 @@ header {
   transition: color 0.3s ease;
   position: relative;
 }
+
 /* Icon above text */
 .nav-links i {
   font-size: 1.2rem;
   margin-bottom: 0.3rem;
 }
-/* Hover & focus states */
+
+/* Hover & focus */
 .nav-links li a:hover,
 .nav-links li a:focus {
   color: var(--brand);
 }
+
 /* Active indicator */
 .nav-links li a.active::after {
   content: "";
@@ -88,42 +100,16 @@ header {
   bottom: -6px;
   left: 0;
 }
-/* Responsive */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
 
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--bg-light);
-    flex-direction: column;
-    width: 80px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    box-shadow: 0 3px 2px rgba(0,0,0,0.1);
-  }
-
-  .nav-links.open {
-    max-height: 500px;
-  }
-
-  .nav-links li {
-    padding: 0.1rem;
-    text-align: center;
-  }
-}
-/* end of styling Header */
-/* main content */
+/* =======================
+   MAIN CONTENT
+======================= */
 main {
   padding: 6rem 2rem 2rem 2rem;
   max-width: 1200px;
   margin: auto;  
-  /* issue to resolve */
 }
+
 /* Hero Layout */
 .hero {
   display: grid;
@@ -133,7 +119,8 @@ main {
   padding: 4rem 2rem;
   background: var(--bg-light);
 }
-/* Text Left */
+
+/* Hero Text */
 .hero-text {
   display: flex;
   flex-direction: column;
@@ -148,11 +135,11 @@ main {
   font-size: 1.5rem;
   color: var(--brand);
 }
-
 .hero-text p {
   font-size: 1rem;
   color: var(--text-primary);
 }
+
 /* CTA Button */
 .btn.cta {
   display: inline-flex;
@@ -166,28 +153,28 @@ main {
   font-weight: bold;
   text-decoration: none;
   transition: background 0.3s ease, transform 0.2s ease;
-  /* issue to resolve */
 }
-
 .btn.cta:hover,
 .btn.cta:focus-visible {
   background: var(--accent);
   transform: translateY(-2px);
-  /* issue to resolve */
 }
-/* Image Right with Decorative Boxes */
+
+/* Hero Image Wrapper */
 .image-wrapper {
   position: relative;
   display: inline-block;
 }
 .image-wrapper img {
-  width: 1000%;
+  width: 100%;
   max-width: 400px;
+  height: auto;
   border-radius: 1rem;
   position: relative;
   z-index: 2;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
+
 /* Decorative boxes */
 .decor-box {
   position: absolute;
@@ -209,18 +196,163 @@ main {
   height: 100%;
   border: 3px solid var(--accent);
 }
-/* Responsive Design */
+
+/* =======================
+   RESPONSIVE DESIGN
+======================= */
+
+/* Tablet & Mobile */
 @media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
+  /* Navbar */
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-light);
+    flex-direction: column;
+    width: 200px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  .nav-links.open {
+    max-height: 500px;
+  }
+  .nav-links li {
+    padding: 0.75rem 0;
     text-align: center;
   }
 
+  /* Main & Hero */
+  main {
+    padding: 5rem 1rem 2rem 1rem;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
   .hero-text {
     align-items: center;
   }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-text h2 {
+    font-size: 1.2rem;
+  }
+  .hero-text p {
+    font-size: 0.95rem;
+  }
 
+  /* Button */
+  .btn.cta {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Image */
   .image-wrapper {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+  }
+  .image-wrapper img {
+    max-width: 300px;
+  }
+
+  /* Decorative boxes visible (scaled down) */
+  .box1,
+  .box2 {
+    border-width: 2px;
+    top: -10px;
+    left: -10px;
+    bottom: -10px;
+    right: -10px;
   }
 }
+
+/* Extra Small Screens (iPhone SE, small Android) */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.6rem;
+  }
+  .btn.cta {
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-links {
+    width: 100%; /* Full-width menu for very small screens */
+  }
+
+  /* Even smaller decorative boxes */
+  .box1 {
+    top: -10px;
+    left: -10px;
+    width: 70%;
+    height: 70%;
+    border: 1.5px solid var(--brand);
+    border-radius: 50%; /* circle instead of rectangle */
+    opacity: 0.5;
+  }
+  .box2 {
+    bottom: -10px;
+    right: -10px;
+    width: 50%;
+    height: 50%;
+    border: 1.5px dotted var(--accent);
+    transform: rotate(-5deg);
+    opacity: 0.5;
+  }
+}
+
+/* ==== Projects ==== */
+    .projects {
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .project-card img { width: 100%; height: 180px; object-fit: cover; }
+    .project-card .content { padding: 1rem; }
+    .project-card h3 { color: var(--brand); margin-bottom: 0.5rem; }
+
+    /* ==== About ==== */
+    .about {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .about h2 { margin-bottom: 1rem; }
+    .about p { max-width: 700px; margin: 0 auto; }
+
+    /* ==== Contact ==== */
+    .contact {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .contact h2 { margin-bottom: 1rem; }
+    .contact a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+    .contact a:hover { color: var(--accent); }
+
+    /* ==== Footer ==== */
+    footer {
+      background: #e5e7eb;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
