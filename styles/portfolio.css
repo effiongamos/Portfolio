@@ -56,6 +56,9 @@ body.dark-mode header {
   align-items: center;
   justify-content: space-between;
 }
+.logo img {
+  height: 40px;
+}
 .text-toggle,
 .menu-toggle {
   background: none;
@@ -142,8 +145,8 @@ body.dark-mode .nav-links li a {
    Mobile and Tablet Views
 ======================= */
 
-/* Mobile view (phones) */
-@media (max-width: 480px) {
+/* Mobile view for tablet and Android */
+@media (max-width: 768px) {
   /* Toggle icons */
   .menu-toggle .open-icon {
     display: inline;
@@ -185,49 +188,6 @@ body.dark-mode .nav-links li a {
   }
 }
 
-/*Tablet view */
-@media (min-width: 481px) and (max-width: 1024px) {
-  /* Toggle icons same as mobile */
-  .menu-toggle .open-icon {
-    display: inline;
-  }
-  .menu-toggle[aria-expanded="true"] .open-icon {
-    display: none;
-  }
-  .menu-toggle[aria-expanded="true"] .close-icon {
-    display: inline;
-  }
-
-  /* Dropdown menu for tablets */
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: var(--bg-light);
-    width: 100px; /* wider for tablets */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-
-  .nav-links.open {
-    max-height: 500px;
-  }
-
-  .nav-links li {
-    padding: 1rem 0;
-    text-align: center;
-  }
-
-  body.dark-mode .nav-links {
-    background: var(--bg-dark);
-  }
-}
-
 /*==================
    Aside styles
 ==================*/
@@ -235,8 +195,8 @@ body.dark-mode .nav-links li a {
   position: fixed;
   top: 60px;
   right: 0;
-  width: 260px;
-  max-width: 90%;
+  width: 200px;
+  max-width: 80%;
   background: var(--bg-light);
   border-left: 3px solid var(--brand);
   padding: 1rem;
@@ -280,4 +240,22 @@ main {
   padding: 6rem 2rem 2rem 2rem;
   max-width: 1200px;
   margin: auto;  
+}
+section {
+  margin-bottom: 4rem;
+}
+/* Hero Layout */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+}
+/* Hero Text */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 }
