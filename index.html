@@ -32,7 +32,7 @@
             </a>
             <!-- Theme toggle -->
             <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
-                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
                 <span class="theme-text">Dark Mode</span>
             </button>
             <!-- Text customization toggle -->
@@ -77,9 +77,13 @@
     </header>
     <!-- Text customization controls -->
     <aside id="text-controls" class="text-controls" hidden>
-        <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
-        <label>Line Spacing: <input type="range" id="line-spacing" min="1" max="2" step="0.1" value="1.5"></label>
-        <label>Font Family:
+        <label for="font-size">Font Size:
+            <input type="range" id="font-size" min="12" max="24" value="16">
+        </label>
+        <label for="line-spacing">Line Spacing:
+            <input type="range" id="line-spacing" min="1" max="2" step="0.1" value="1.5">
+        </label>
+        <label for="font-family">Font Family:
             <select id="font-family">
                 <option value="system-ui">Default</option>
                 <option value="Arial, sans-serif">Arial</option>
@@ -103,8 +107,12 @@
                 <option value="'Corbel', sans-serif">Corbel</option>
             </select>
         </label>
-        <label>Text Color: <input type="color" id="text-color" value="#111827"></label>
-        <label>Background Color: <input type="color" id="bg-color" value="#FFFFFF"></label>
+        <label for="text-color">Text Color:
+            <input type="color" id="text-color" value="#111827">
+        </label>
+        <label for="bg-color">Background Color:
+            <input type="color" id="bg-color" value="#FFFFFF">
+        </label>
         <button id="reset-settings">Reset</button>
     </aside>
     <main>

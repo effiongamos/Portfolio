@@ -36,6 +36,9 @@ body.dark-mode {
     scroll-behavior: auto !important;
   }
 }
+/* =======================
+   HEADER
+======================= */
 header {
   position: fixed;
   top: 0;
@@ -43,8 +46,8 @@ header {
   background: var(--bg-light);
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 1000;
-  transition: background 0.3s;
 }
+
 body.dark-mode header {
   background: var(--bg-dark);
 }
@@ -57,7 +60,7 @@ body.dark-mode header {
   justify-content: space-between;
 }
 .logo img {
-  height: 40px;
+  height: 50px;
 }
 .text-toggle,
 .menu-toggle {
@@ -142,49 +145,30 @@ body.dark-mode .nav-links li a {
 }
 
 /* =======================
-   Mobile and Tablet Views
+   RESPONSIVE DESIGN FOR NAVIGATION MENU (MOBILE) HEADER
 ======================= */
-
-/* Mobile view for tablet and Android */
 @media (max-width: 768px) {
-  /* Toggle icons */
-  .menu-toggle .open-icon {
-    display: inline;
+  .menu-toggle {
+    display: block;
   }
-  .menu-toggle[aria-expanded="true"] .open-icon {
-    display: none;
-  }
-  .menu-toggle[aria-expanded="true"] .close-icon {
-    display: inline;
-  }
-
-  /* Dropdown menu for phones */
   .nav-links {
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: var(--bg-light);
-    width: 90px; /* small width for phones */
-    display: flex;
+    background: var(--bg-light);
     flex-direction: column;
-    overflow: hidden;
+    width: 220px;
     max-height: 0;
-    transition: max-height 0.5s ease;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    z-index: 999;
   }
-
   .nav-links.open {
-    max-height: 400px;
+    max-height: 500px;
   }
-
   .nav-links li {
-    padding: 0.8rem 0;
+    padding: 0.9rem 0;
     text-align: center;
-  }
-
-  body.dark-mode .nav-links {
-    background: var(--bg-dark);
   }
 }
 
@@ -195,8 +179,8 @@ body.dark-mode .nav-links li a {
   position: fixed;
   top: 60px;
   right: 0;
-  width: 200px;
-  max-width: 80%;
+  width: 260px;
+  max-width: 90%;
   background: var(--bg-light);
   border-left: 3px solid var(--brand);
   padding: 1rem;
@@ -207,21 +191,27 @@ body.dark-mode .nav-links li a {
   font-size: 0.95rem;
 }
 
+/* Slide in when open */
 .text-controls.open {
   transform: translateX(0);
 }
 
+/* Labels (light mode default) */
 .text-controls label {
   display: block;
   margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
+/* Inputs & selects */
 .text-controls input,
 .text-controls select {
   width: 100%;
   margin-top: 0.25rem;
 }
 
+/* Reset button */
 #reset-settings {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -232,6 +222,29 @@ body.dark-mode .nav-links li a {
   width: 100%;
 }
 
+/* Dark mode overrides */
+body.dark-mode .text-controls {
+  background: var(--bg-dark);
+  border-left-color: var(--accent);
+}
+
+body.dark-mode .text-controls label {
+  color: var(--text-light);
+  font-weight: 700; /* bold in dark mode */
+}
+
+body.dark-mode .text-controls input,
+body.dark-mode .text-controls select {
+  background: #2a2a2a;
+  color: var(--text-light);
+  border: 1px solid #666;
+}
+
+body.dark-mode #reset-settings {
+  background-color: var(--accent);
+  color: #000;
+}
+
 
 /* =======================
    MAIN CONTENT
@@ -240,22 +253,4 @@ main {
   padding: 6rem 2rem 2rem 2rem;
   max-width: 1200px;
   margin: auto;  
-}
-section {
-  margin-bottom: 4rem;
-}
-/* Hero Layout */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 1rem;
-  padding: 4rem 2rem;
-}
-/* Hero Text */
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
 }

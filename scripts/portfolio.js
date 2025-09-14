@@ -26,40 +26,87 @@ const resetBtn = document.getElementById('reset-settings');
 // =====================
 // Mobile Menu Toggle
 // =====================
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', String(!expanded));
-  navLinks.classList.toggle('open');
-  menuToggle.classList.toggle('active');
-});
+function toggleNavBar() {
+  if (!menuToggle || !navLinks) return;
 
-// Close menu on link click
-navItems.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', 'false');
+  // Open/close menu
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    navLinks.classList.toggle('open');
+    menuToggle.classList.toggle('active');
   });
-});
+
+  // Close when clicking a nav link
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      closeNavBar();
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+      closeNavBar();
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeNavBar();
+    }
+  });
+}
+
+function closeNavBar() {
+  navLinks.classList.remove('open');
+  menuToggle.classList.remove('active');
+  menuToggle.setAttribute('aria-expanded', 'false');
+}
+
+toggleNavBar();
 
 // =====================
 // Theme Toggle
 // =====================
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeIcon.classList.replace('fa-circle-half-stroke', 'fa-sun');
+  themeText.textContent = "Light Mode";
+  themeToggle.setAttribute('aria-pressed', 'true');
+}
 
 themeToggle.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark-mode');
-  themeToggle.setAttribute('aria-pressed', isDark);
+  body.classList.toggle('dark-mode');
+
+  const isDark = body.classList.contains('dark-mode');
 
   if (isDark) {
-    // Dark mode is active → show Light Mode option
-    themeIcon.className = "fa-solid fa-sun";
+    themeIcon.classList.replace('fa-circle-half-stroke', 'fa-sun');
     themeText.textContent = "Light Mode";
+    themeToggle.setAttribute('aria-pressed', 'true');
+    localStorage.setItem('theme', 'dark');
   } else {
-    // Light mode is active → show Dark Mode option
-    themeIcon.className = "fa-solid fa-moon";
+    themeIcon.classList.replace('fa-sun', 'fa-circle-half-stroke');
     themeText.textContent = "Dark Mode";
+    themeToggle.setAttribute('aria-pressed', 'false');
+    localStorage.setItem('theme', 'light');
   }
 });
+
+
+// =====================
+// Keyboard Navigation Support
+// =====================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    navLinks.classList.remove('open');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
 
 
 // =====================
@@ -81,14 +128,16 @@ window.addEventListener("scroll", () => {
 // =====================
 // Text Customization Panel
 // =====================
+
+// Toggle panel open/close
 textToggle.addEventListener('click', () => {
   const expanded = textToggle.getAttribute('aria-expanded') === 'true';
   textToggle.setAttribute('aria-expanded', String(!expanded));
   textControls.hidden = expanded;
-  requestAnimationFrame(() => textControls.classList.toggle('open'));
+  requestAnimationFrame(() => textControls.classList.toggle('open', !expanded));
 });
 
-// Close panel when clicking outside
+// Close when clicking outside
 document.addEventListener('click', e => {
   if (!textControls.contains(e.target) && !textToggle.contains(e.target) && textControls.classList.contains('open')) {
     textControls.classList.remove('open');
@@ -97,13 +146,14 @@ document.addEventListener('click', e => {
   }
 });
 
-// Apply text settings
+// Apply settings
 function applyTextSettings() {
   body.style.fontSize = fontSizeInput.value + "px";
   body.style.lineHeight = lineSpacingInput.value;
   body.style.fontFamily = fontFamilySelect.value;
   body.style.color = textColorInput.value;
   body.style.backgroundColor = bgColorInput.value;
+
   localStorage.setItem('text-settings', JSON.stringify({
     fontSize: fontSizeInput.value,
     lineSpacing: lineSpacingInput.value,
@@ -112,12 +162,10 @@ function applyTextSettings() {
     bgColor: bgColorInput.value
   }));
 }
-
-// Listen to input changes
+// Listeners
 [fontSizeInput, lineSpacingInput, fontFamilySelect, textColorInput, bgColorInput].forEach(el => {
   el.addEventListener('input', applyTextSettings);
 });
-
 // Reset
 resetBtn.addEventListener('click', () => {
   fontSizeInput.value = 16;
@@ -128,8 +176,7 @@ resetBtn.addEventListener('click', () => {
   applyTextSettings();
   localStorage.removeItem('text-settings');
 });
-
-// Load saved settings
+// Load saved
 window.addEventListener('DOMContentLoaded', () => {
   const saved = JSON.parse(localStorage.getItem('text-settings'));
   if (saved) {
@@ -142,7 +189,9 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
+// =====================
+// Interactive Image Slider
+// =====================
 //  image slider
   const imageWrapper = document.querySelector('.image-wrapper');
   const box1 = document.querySelector('.box1');

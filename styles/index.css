@@ -100,110 +100,15 @@ header {
   bottom: -6px;
   left: 0;
 }
-
+/* Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #f1f1f1;
+}
 /* =======================
-   MAIN CONTENT
+   RESPONSIVE
 ======================= */
-main {
-  padding: 6rem 2rem 2rem 2rem;
-  max-width: 1200px;
-  margin: auto;  
-}
-
-/* Hero Layout */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  padding: 4rem 2rem;
-  background: var(--bg-light);
-}
-
-/* Hero Text */
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-.hero-text h1 {
-  font-size: 2.5rem;
-  color: var(--text-primary);
-}
-.hero-text h2 {
-  font-size: 1.5rem;
-  color: var(--brand);
-}
-.hero-text p {
-  font-size: 1rem;
-  color: var(--text-primary);
-}
-
-/* CTA Button */
-.btn.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: var(--brand);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-.btn.cta:hover,
-.btn.cta:focus-visible {
-  background: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* Hero Image Wrapper */
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-.image-wrapper img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 1rem;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-/* Decorative boxes */
-.decor-box {
-  position: absolute;
-  border-radius: 1rem;
-  z-index: 1;
-  transition: transform 0.5s ease;
-}
-.box1 {
-  top: -20px;
-  left: -20px;
-  width: 100%;
-  height: 100%;
-  border: 3px solid var(--brand);
-}
-.box2 {
-  bottom: -20px;
-  right: -20px;
-  width: 100%;
-  height: 100%;
-  border: 3px solid var(--accent);
-}
-
-/* =======================
-   RESPONSIVE DESIGN
-======================= */
-
-/* Tablet & Mobile */
 @media (max-width: 768px) {
-  /* Navbar */
   .menu-toggle {
     display: block;
   }
@@ -213,146 +118,147 @@ main {
     right: 0;
     background: var(--bg-light);
     flex-direction: column;
-    width: 200px;
+    width: 220px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.4s ease-in-out;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   }
   .nav-links.open {
     max-height: 500px;
   }
   .nav-links li {
-    padding: 0.75rem 0;
+    padding: 0.9rem 0;
     text-align: center;
-  }
-
-  /* Main & Hero */
-  main {
-    padding: 5rem 1rem 2rem 1rem;
-  }
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-  .hero-text {
-    align-items: center;
-  }
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-  .hero-text h2 {
-    font-size: 1.2rem;
-  }
-  .hero-text p {
-    font-size: 0.95rem;
-  }
-
-  /* Button */
-  .btn.cta {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  /* Image */
-  .image-wrapper {
-    margin-top: 1.5rem;
-  }
-  .image-wrapper img {
-    max-width: 300px;
-  }
-
-  /* Decorative boxes visible (scaled down) */
-  .box1,
-  .box2 {
-    border-width: 2px;
-    top: -10px;
-    left: -10px;
-    bottom: -10px;
-    right: -10px;
   }
 }
 
-/* Extra Small Screens (iPhone SE, small Android) */
-@media (max-width: 480px) {
-  .hero-text h1 {
-    font-size: 1.6rem;
+/* =======================
+   Text Controls Panel
+======================= */
+.text-controls {
+  padding: 1rem;
+  background: var(--bg-light);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 320px;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.text-controls.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.text-controls label {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* Inputs & Selects */
+.text-controls input,
+.text-controls select {
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+/* Color input */
+.text-controls input[type="color"] {
+  width: 45px;
+  height: 28px;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Reset button */
+.text-controls button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.text-controls button:hover {
+  background: #2563eb; /* darker blue */
+}
+
+/* =======================
+   Dark Mode Overrides
+======================= */
+body.dark-mode .text-controls {
+  background: var(--bg-dark);
+  border-color: #444;
+}
+
+body.dark-mode .text-controls label {
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+body.dark-mode .text-controls input,
+body.dark-mode .text-controls select {
+  background: #2a2a2a;
+  color: var(--text-light);
+  border: 1px solid #666;
+}
+
+body.dark-mode .text-controls input[type="color"] {
+  border: 1px solid #888;
+  background: #2a2a2a;
+}
+
+body.dark-mode .text-controls button {
+  background: var(--accent);
+  color: #000;
+}
+body.dark-mode .text-controls button:hover {
+  background: #d97706; /* darker amber */
+}
+
+/* =======================
+   Responsive Design
+======================= */
+@media (max-width: 768px) {
+  .text-controls {
+    max-width: 100%;
+    padding: 0.8rem;
+    border-radius: 0;
+    margin: 0;
   }
-  .btn.cta {
+
+  .text-controls label {
+    font-size: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .text-controls input,
+  .text-controls select {
     width: 100%;
-    justify-content: center;
-  }
-  .nav-links {
-    width: 100%; /* Full-width menu for very small screens */
+    margin-left: 0;
   }
 
-  /* Even smaller decorative boxes */
-  .box1 {
-    top: -10px;
-    left: -10px;
-    width: 70%;
-    height: 70%;
-    border: 1.5px solid var(--brand);
-    border-radius: 50%; /* circle instead of rectangle */
-    opacity: 0.5;
-  }
-  .box2 {
-    bottom: -10px;
-    right: -10px;
-    width: 50%;
-    height: 50%;
-    border: 1.5px dotted var(--accent);
-    transform: rotate(-5deg);
-    opacity: 0.5;
+  .text-controls button {
+    width: 100%;
+    font-size: 1rem;
   }
 }
 
-/* ==== Projects ==== */
-    .projects {
-      padding: 3rem 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    .project-card img { width: 100%; height: 180px; object-fit: cover; }
-    .project-card .content { padding: 1rem; }
-    .project-card h3 { color: var(--brand); margin-bottom: 0.5rem; }
-
-    /* ==== About ==== */
-    .about {
-      background: var(--bg-dark);
-      color: var(--text-light);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .about h2 { margin-bottom: 1rem; }
-    .about p { max-width: 700px; margin: 0 auto; }
-
-    /* ==== Contact ==== */
-    .contact {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .contact h2 { margin-bottom: 1rem; }
-    .contact a {
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      color: var(--brand);
-      text-decoration: none;
-    }
-    .contact a:hover { color: var(--accent); }
-
-    /* ==== Footer ==== */
-    footer {
-      background: #e5e7eb;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
