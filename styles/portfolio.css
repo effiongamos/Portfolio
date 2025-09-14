@@ -44,13 +44,17 @@ header {
   top: 0;
   width: 100%;
   background: var(--bg-light);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(8, 7, 7, 0.1);
+  border-bottom: 1.5px solid var(--brand);
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
   z-index: 1000;
 }
-
 body.dark-mode header {
   background: var(--bg-dark);
+  border-bottom: 1px solid var(--accent);
+  box-shadow: 0 3px 5px rgba(243, 240, 240, 0.5);
 }
+
 .navbar {
   max-width: 1200px;
   margin: auto;
@@ -60,18 +64,9 @@ body.dark-mode header {
   justify-content: space-between;
 }
 .logo img {
-  height: 50px;
+  height: 60px;
 }
-.text-toggle,
-.menu-toggle {
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  cursor: pointer;
-  margin-left: 0.5rem;
-  color: var(--text-primary);
-  transition: color 0.3s;
-}
+
 .text-toggle,
 .theme-toggle {
   background: none;
@@ -86,8 +81,8 @@ body.dark-mode header {
   align-items: center;
   gap: 0.50rem;
   transform: color 0.5s;
-  
 }
+
 body.dark-mode .theme-toggle,
 body.dark-mode .text-toggle,
 body.dark-mode .menu-toggle {
@@ -97,7 +92,9 @@ button:focus {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
 }
-/* Nav links */
+/* ======================
+   NAV LINKS
+====================== */
 .nav-links {
   list-style: none;
   display: flex;
@@ -127,6 +124,17 @@ body.dark-mode .nav-links li a {
 .nav-links li a:focus {
   color: var(--brand);
 }
+body.dark-mode .nav-links li a {
+  color: var(--text-light);
+}
+.nav-links i {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: var(--brand);
+}
 .nav-links li a[aria-current="page"]::after {
   content: "";
   display: block;
@@ -138,10 +146,30 @@ body.dark-mode .nav-links li a {
   bottom: -6px;
   left: 0;
 }
-/* Default: hide toggle icons (desktop) */
-.menu-toggle .open-icon,
+/* ======================
+   MENU TOGGLE ICONS
+====================== */
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+  color: var(--text-primary);
+  z-index: 1200;
+}
+
+.menu-toggle .open-icon {
+  display: inline-block;
+}
 .menu-toggle .close-icon {
   display: none;
+}
+.menu-toggle.active .open-icon {
+  display: none;
+}
+.menu-toggle.active .close-icon {
+  display: inline-block;
 }
 
 /* =======================
@@ -151,23 +179,32 @@ body.dark-mode .nav-links li a {
   .menu-toggle {
     display: block;
   }
+
   .nav-links {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--bg-light);
+    position: fixed;
+    top: 0;
+    right: -200px; /* hidden off-screen */
+    height: 98%;
+    width: 100px;
     flex-direction: column;
-    width: 220px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    background: var(--bg-light);
+    padding-top: 4rem;
+    box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1100;
+  }
+  body.dark-mode .nav-links {
+    background: var(--bg-dark);
   }
   .nav-links.open {
-    max-height: 500px;
+    right: 0; /* slide in */
   }
+  
+  .logo img {
+  height: 35px;
+}
   .nav-links li {
-    padding: 0.9rem 0;
+    padding: 1rem 0;
     text-align: center;
   }
 }

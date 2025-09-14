@@ -26,46 +26,39 @@ const resetBtn = document.getElementById('reset-settings');
 // =====================
 // Mobile Menu Toggle
 // =====================
-function toggleNavBar() {
-  if (!menuToggle || !navLinks) return;
+menuToggle.addEventListener('click', () => {
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!expanded));
 
-  // Open/close menu
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    navLinks.classList.toggle('open');
-    menuToggle.classList.toggle('active');
-  });
+  navLinks.classList.toggle('open');
+  menuToggle.classList.toggle('active');
+});
 
-  // Close when clicking a nav link
-  navItems.forEach(link => {
-    link.addEventListener('click', () => {
-      closeNavBar();
-    });
-  });
-
-  // Close when clicking outside
-  document.addEventListener('click', (event) => {
-    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
-      closeNavBar();
-    }
-  });
-
-  // Close with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-      closeNavBar();
-    }
-  });
-}
-
+// =====================
+// Helper: Close Menu
+// =====================
 function closeNavBar() {
   navLinks.classList.remove('open');
   menuToggle.classList.remove('active');
   menuToggle.setAttribute('aria-expanded', 'false');
 }
 
-toggleNavBar();
+// Close when clicking a nav link
+navItems.forEach(link => {
+  link.addEventListener('click', closeNavBar);
+});
+
+// Close when clicking outside
+document.addEventListener('click', (e) => {
+  if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+    closeNavBar();
+  }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeNavBar();
+});
 
 // =====================
 // Theme Toggle
